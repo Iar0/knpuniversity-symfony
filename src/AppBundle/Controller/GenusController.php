@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,5 +53,14 @@ class GenusController extends Controller
 //        ]);
 //
 //        return new Response($html);
+    }
+
+    /**
+     * @Route("/genus/{genusName}/notes")
+     * @Method("GET")
+     */
+    public function getNotesAction($genusName)
+    {
+        
     }
 }
