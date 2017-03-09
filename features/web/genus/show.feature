@@ -3,10 +3,6 @@ Feature: Genus
   As an application user
   I need to be able to use the genus pages
 
-  Scenario: Show homepage
-    Given I am on "/"
-    Then I should see "index"
-
   @javascript
   Scenario: Show notes for genus octopus
     Given I am on "/genus/octopus"
