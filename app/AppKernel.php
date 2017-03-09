@@ -15,6 +15,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new \Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
             new AppBundle\AppBundle(),
         ];
 
@@ -35,7 +37,13 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+        // quick fix for cache: https://github.com/symfony/symfony/issues/19363
+//        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+        if (in_array($this->getEnvironment(), ['test','dev','prod'])) {
+            return '/tmp/sfcache/'.$this->getEnvironment();
+        }
+
+        return parent::getCacheDir();
     }
 
     public function getLogDir()

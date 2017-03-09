@@ -7,16 +7,22 @@ Feature: Genus
     Given I am on "/"
     Then I should see "index"
 
-  Scenario: Show genus
-    Given I am on "/genus/salmon"
-    Then I should see "Genus: salmon"
-    And I should not see "Octopus asked me a riddle, outsmarted me"
-
+  @javascript
   Scenario: Show notes for genus octopus
     Given I am on "/genus/octopus"
-    Then I should see "Genus: octopus"
+    And I wait for the notes to load
+    Then I should see "octopus"
     And I should see "Octopus asked me a riddle, outsmarted me"
 
   Scenario: Show genus in page title
     Given I am on "/genus/octopus"
-    Then I should see "Genus: octopus" in the "title" element
+    Then I should see "Genus octopus" in the "title" element
+
+  Scenario: Show Fun Fact
+    Given I am on "/genus/octopus"
+    Then I should see "Octopuses can change the color of their body in just three-tenths of a second!"
+
+  Scenario: Show correct Known Species number format
+    Given I am on "/genus/octopus"
+    Then I should see "99.999"
+    And I should not see "99,999"
