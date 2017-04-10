@@ -11,7 +11,11 @@
         <tbody>
             {% for genus in genuses %}
                 <tr>
-                    <th>{{ genus.name }}</th>
+                    <th>
+                        <a href="{{ path("genus_show", { 'genusName': genus.name}) }}">
+                            {{ genus.name }}
+                        </a>
+                    </th>
                     <th>{{ genus.speciesCount }}</th>
                     <th>{{ genus.updatedAt|date('Y-m-d') }}</th>
                 </tr>
